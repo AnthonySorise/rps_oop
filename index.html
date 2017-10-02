@@ -48,27 +48,23 @@
              */
             function View(){
                 var self = this;
-
                 this.getUserChoice = function(input){
                     console.log('Input is: ', $(this).attr('id'));
-
                     var result = self.pushUserChoiceToController($(this).attr('id'));
-
                     self.displayResult(result);
                 };
-
-
                 this.pushUserChoiceToController = function(input){
                     return controller.receivePlayerChoice(input);
                 };
-
                 this.displayResult = function(output){
                     var outputFormatted = $('<div>').text(output);
                     $('.game_output').append(outputFormatted);
                 };
-
                 this.resetGame = function(){
                     $('.game_output').text("");
+                    model.storePlayerWon(null);
+                    model.storeComputerChoice(null);
+                    model.storePlayerChoice(null);
                 };
             }
 
@@ -85,20 +81,20 @@
                     var randomIndex = Math.floor(Math.random() * model.choices.length);
                     model.storeComputerChoice(model.choices[randomIndex])
                 };
-
                 this.receivePlayerChoice = function(playerChoice){
+                    this.computerChoose();
                     model.storePlayerChoice(playerChoice);
                     this.compareChoices();
                     return this.compileResultMessage();
+                    //reset
                 };
-
                 this.compareChoices = function(){
-                    if(model.getPlayerChoice === model.get){
-                        //tie
+                    console.log(model.getPlayerChoice() +" vs "+ model.getComputerChoice())
+                    if(model.getPlayerChoice() === model.getComputerChoice()){
                         return
                     }
                     if(model.getPlayerChoice() === "rock"){
-                        if(model.getComputerChoice === "scissors"){
+                        if(model.getComputerChoice() === "scissors"){
                             model.storePlayerWon(true)
                         }
                         else{
@@ -106,7 +102,7 @@
                         }
                     }
                     else if(model.getPlayerChoice() === "paper"){
-                        if(model.getComputerChoice === "rock"){
+                        if(model.getComputerChoice() === "rock"){
                             model.storePlayerWon(true)
                         }
                         else{
@@ -114,7 +110,7 @@
                         }
                     }
                     else if(model.getPlayerChoice() === "scissors") {
-                        if(model.getComputerChoice === "paper"){
+                        if(model.getComputerChoice() === "paper"){
                             model.storePlayerWon(true)
                         }
                         else{
@@ -127,12 +123,15 @@
                     if(model.getPlayerWon()){
                         result = "You Won!  You chose " + model.getPlayerChoice() + " and computer chose " + model.getComputerChoice();
                     }
-                    else if(model.getPlayerWon === false){
+                    else if(model.getPlayerWon() === false){
                         result = "You Lost!  You chose " + model.getPlayerChoice() + " and computer chose " + model.getComputerChoice();
                     }
                     else{
                         result = "Tie Game!  You and the computer both chose " + model.getPlayerChoice();
                     }
+                    //reset
+                    model.storePlayerWon(null);
+                    //return result
                     return result;
                 }
             }
