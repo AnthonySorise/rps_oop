@@ -87,18 +87,20 @@
                 };
 
                 this.receivePlayerChoice = function(playerChoice){
+                    this.computerChoose();
                     model.storePlayerChoice(playerChoice);
                     this.compareChoices();
                     return this.compileResultMessage();
                 };
 
                 this.compareChoices = function(){
-                    if(model.getPlayerChoice === model.get){
+                    if(model.getPlayerChoice() === model.getComputerChoice()){
                         //tie
-                        return
+                        model.storePlayerWon(false);
+                        return;
                     }
                     if(model.getPlayerChoice() === "rock"){
-                        if(model.getComputerChoice === "scissors"){
+                        if(model.getComputerChoice() === "scissors"){
                             model.storePlayerWon(true)
                         }
                         else{
@@ -106,7 +108,7 @@
                         }
                     }
                     else if(model.getPlayerChoice() === "paper"){
-                        if(model.getComputerChoice === "rock"){
+                        if(model.getComputerChoice() === "rock"){
                             model.storePlayerWon(true)
                         }
                         else{
@@ -114,7 +116,7 @@
                         }
                     }
                     else if(model.getPlayerChoice() === "scissors") {
-                        if(model.getComputerChoice === "paper"){
+                        if(model.getComputerChoice() === "paper"){
                             model.storePlayerWon(true)
                         }
                         else{
@@ -127,7 +129,7 @@
                     if(model.getPlayerWon()){
                         result = "You Won!  You chose " + model.getPlayerChoice() + " and computer chose " + model.getComputerChoice();
                     }
-                    else if(model.getPlayerWon === false){
+                    else if(model.getPlayerWon() === false){
                         result = "You Lost!  You chose " + model.getPlayerChoice() + " and computer chose " + model.getComputerChoice();
                     }
                     else{
