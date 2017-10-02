@@ -13,7 +13,20 @@
              * @constructor
              */
             function Model(){
-
+                this.computerChoice = null;
+                this.getComputerChoice = function(){
+                    return this.computerChoice;
+                };
+                this.storeComputerChoice = function(computerChoice){
+                    this.computerChoice = computerChoice;
+                };
+                this.playerChoice = null;
+                this.getPlayerChoice = function(){
+                    return this.playerChoice;
+                }
+                this.storePlayerChoice = function(playerChoice){
+                    this.playerChoice = playerChoice;
+                };
             }
 
             /**
