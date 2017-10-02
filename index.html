@@ -57,11 +57,7 @@
 
                 this.getUserChoice = function(input){
                     console.log('Input is: ', $(this).attr('id'));
-                    var result = self.pushUserChoiceToController($(this).attr('id'));
-                    self.displayResult(result);
-                };
-                this.pushUserChoiceToController = function(input){
-                    return controller.receivePlayerChoice(input);
+                    controller.receivePlayerChoice($(this).attr('id'));
                 };
                 this.displayResult = function(output){
                     var outputFormatted = self.background($('<div>').text(output));
@@ -99,7 +95,7 @@
                     this.computerChoose();
                     model.storePlayerChoice(playerChoice);
                     this.compareChoices();
-                    return this.compileResultMessage();
+                    view.displayResult(this.compileResultMessage());
                     //reset
                 };
                 this.compareChoices = function(){
