@@ -24,11 +24,13 @@
                 this.playerChoice = null;
                 this.getPlayerChoice = function(){
                     return this.playerChoice;
-                }
+                };
                 this.storePlayerChoice = function(playerChoice){
                     this.playerChoice = playerChoice;
                 };
             }
+
+            var model = new Model();
 
             /**
              * View
@@ -41,10 +43,27 @@
 
                 this.getUserMove = function(input){
                     console.log('Input is: ', $(this).attr('id'));
+
+                    var result = self.pushUserMoveToController(input);
+
+                    self.displayResult(result);
+                };
+
+                this.pushUserMoveToController = function(input){
+                    return controller;
+                };
+
+                this.displayResult = function(output){
+                    var outputFormatted = $('<div>').text(output);
+                    $('.game_output').append(outputFormatted);
+                };
+
+                this.resetGame = function(){
+                    $('.game_output').text("");
                 };
             }
 
-            var input = new View();
+            var view = new View();
 
             /**
              * Controller
@@ -55,6 +74,9 @@
             function Controller(){
 
             }
+
+            var controller = new Controller();
+
         </script>
         
     </head>
