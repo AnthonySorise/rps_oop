@@ -13,6 +13,7 @@
              * @constructor
              */
             function Model(){
+                this.choices = ["rock", "paper", "scissors"];
                 this.computerChoice = null;
                 this.getComputerChoice = function(){
                     return this.computerChoice;
@@ -46,7 +47,10 @@
              * @constructor
              */
             function Controller(){
-
+                this.computerChoose = function(){
+                    var randomIndex = Math.floor(Math.random() * model.choices.length)
+                    model.storeComputerChoice(model.choices[randomIndex])
+                }
             }
         </script>
         
