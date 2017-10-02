@@ -52,14 +52,14 @@
                 this.getUserChoice = function(input){
                     console.log('Input is: ', $(this).attr('id'));
 
-                    var result = self.pushUserChoiceToController(input);
+                    var result = self.pushUserChoiceToController($(this).attr('id'));
 
                     self.displayResult(result);
                 };
 
 
                 this.pushUserChoiceToController = function(input){
-                    return controller;
+                    return controller.receivePlayerChoice(input);
                 };
 
                 this.displayResult = function(output){
@@ -87,7 +87,7 @@
                 };
 
                 this.receivePlayerChoice = function(playerChoice){
-                    model.storePlayerChoice(playerChoice)
+                    model.storePlayerChoice(playerChoice);
                     this.compareChoices();
                     return this.compileResultMessage();
                 };
