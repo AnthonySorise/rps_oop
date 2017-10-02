@@ -91,7 +91,9 @@
                 this.compareChoices = function(){
                     console.log(model.getPlayerChoice() +" vs "+ model.getComputerChoice())
                     if(model.getPlayerChoice() === model.getComputerChoice()){
-                        return
+                        //tie
+                        model.storePlayerWon(null);
+                        return;
                     }
                     if(model.getPlayerChoice() === "rock"){
                         if(model.getComputerChoice() === "scissors"){
@@ -129,9 +131,6 @@
                     else{
                         result = "Tie Game!  You and the computer both chose " + model.getPlayerChoice();
                     }
-                    //reset
-                    model.storePlayerWon(null);
-                    //return result
                     return result;
                 }
             }
