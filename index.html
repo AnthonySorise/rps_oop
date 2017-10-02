@@ -48,6 +48,7 @@
              */
             function View(){
                 var self = this;
+                this.switchBackground = 0;
 
                 this.getUserChoice = function(input){
                     console.log('Input is: ', $(this).attr('id'));
@@ -63,8 +64,18 @@
                 };
 
                 this.displayResult = function(output){
-                    var outputFormatted = $('<div>').text(output);
+                    var outputFormatted = self.background($('<div>').text(output));
                     $('.game_output').append(outputFormatted);
+                    this.switchBackground = 1 - this.switchBackground;
+                };
+
+                this.background = function(element){
+                    if(self.switchBackground === 0){
+                        return element.css('background-color', 'white');
+                    }
+                    else{
+                        return element.css('background-color', 'grey');
+                    }
                 };
 
                 this.resetGame = function(){
@@ -101,15 +112,15 @@
                     }
                     if(model.getPlayerChoice() === "rock"){
                         if(model.getComputerChoice() === "scissors"){
-                            model.storePlayerWon(true)
+                            model.storePlayerWon(true);
                         }
                         else{
-                            model.storePlayerWon(false)
+                            model.storePlayerWon(false);
                         }
                     }
                     else if(model.getPlayerChoice() === "paper"){
                         if(model.getComputerChoice() === "rock"){
-                            model.storePlayerWon(true)
+                            model.storePlayerWon(true);
                         }
                         else{
                             model.storePlayerWon(false)
@@ -117,10 +128,10 @@
                     }
                     else if(model.getPlayerChoice() === "scissors") {
                         if(model.getComputerChoice() === "paper"){
-                            model.storePlayerWon(true)
+                            model.storePlayerWon(true);
                         }
                         else{
-                            model.storePlayerWon(false)
+                            model.storePlayerWon(false);
                         }
                     }
                 };
