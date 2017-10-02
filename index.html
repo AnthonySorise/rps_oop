@@ -23,8 +23,14 @@
              * @constructor
              */
             function View(){
+                var self = this;
 
+                this.getUserMove = function(input){
+                    console.log('Input is: ', $(this).attr('id'));
+                };
             }
+
+            var input = new View();
 
             /**
              * Controller
@@ -34,6 +40,12 @@
              */
             function Controller(){
 
+            }
+
+            $(document).ready(initialize);
+
+            function initialize(){
+                $('.user_move').click(input.getUserMove);
             }
         </script>
         
