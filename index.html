@@ -5,6 +5,7 @@
         <title>Rock-Paper-Scissors OOP</title>
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
         <script src="https://code.jquery.com/jquery.min.js"></script>
+        <script src="main.js"></script>
         <script>
             /**
              * Model
@@ -37,8 +38,14 @@
              * @constructor
              */
             function View(){
+                var self = this;
 
+                this.getUserMove = function(input){
+                    console.log('Input is: ', $(this).attr('id'));
+                };
             }
+
+            var input = new View();
 
             /**
              * Controller
