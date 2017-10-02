@@ -36,6 +36,11 @@
                 this.storePlayerChoice = function(playerChoice){
                     this.playerChoice = playerChoice;
                 };
+                this.resetData = function(){
+                    this.storePlayerWon(null);
+                    this.storeComputerChoice(null);
+                    this.storePlayerChoice(null);
+                };
             }
 
             var model = new Model();
@@ -72,11 +77,8 @@
                         return element.css('background-color', 'grey');
                     }
                 };
-                this.resetGame = function(){
-                    $('.game_output').text("");
-                    model.storePlayerWon(null);
-                    model.storeComputerChoice(null);
-                    model.storePlayerChoice(null);
+                this.askControllerToReset = function(){
+                    controller.resetGame();
                 };
             }
 
@@ -144,7 +146,12 @@
                         result = "Tie Game!  You and the computer both chose " + model.getPlayerChoice();
                     }
                     return result;
-                }
+                };
+
+                this.resetGame = function(){
+                    $('.game_output').text("");
+                    model.resetData();
+                };
             }
 
             var controller = new Controller();
