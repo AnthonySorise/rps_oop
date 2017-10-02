@@ -42,7 +42,7 @@
             function View(){
                 var self = this;
 
-                this.getUserMove = function(input){
+                this.getUserChoice = function(input){
                     console.log('Input is: ', $(this).attr('id'));
 
                     var result = self.pushUserMoveToController(input);
@@ -51,7 +51,8 @@
                 };
 
                 this.pushUserMoveToController = function(input){
-                    return controller;
+                    return controller.receivePlayerChoice(input);
+                // controller.receivePlayerChoice(input);
                 };
 
                 this.displayResult = function(output){
@@ -74,7 +75,7 @@
              */
             function Controller(){
                 this.computerChoose = function(){
-                    var randomIndex = Math.floor(Math.random() * model.choices.length)
+                    var randomIndex = Math.floor(Math.random() * model.choices.length);
                     model.storeComputerChoice(model.choices[randomIndex])
                 }
             }
@@ -82,7 +83,7 @@
             var controller = new Controller();
 
         </script>
-        
+
     </head>
     
     <body>
